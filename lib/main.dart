@@ -37,12 +37,12 @@ class _HomeState extends State<Home> {
         body: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
           Padding(
               padding: EdgeInsets.only(top: 32, bottom: 16),
-              child: Text("App choice (never lost):",
+              child: Text("App choice:",
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold))),
           Image.asset("assets/images/default.png"),
           Padding(
               padding: EdgeInsets.only(top: 32, bottom: 16),
-              child: Text("Your stupid choice:",
+              child: Text("Choose one of the options below:",
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold))),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
