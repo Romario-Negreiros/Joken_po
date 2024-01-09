@@ -92,6 +92,31 @@ class _HomeState extends State<Home> {
         ),
         body: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
           Padding(
+              padding: EdgeInsets.only(top: 32),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Column(
+                    children: [
+                      Text("Score do App", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                      Padding(
+                          padding: EdgeInsets.only(top: 5),
+                          child: Text("$appScore", style: TextStyle(fontSize: 18)))
+                    ],
+                  ),
+                  Text(result, style: TextStyle(fontSize: 18, decoration: TextDecoration.underline, decorationColor: Colors.purple)),
+                  Column(
+                    children: [
+                      Text("Seu Score", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                      Padding(
+                          padding: EdgeInsets.only(top: 5),
+                          child: Text("$userScore", style: TextStyle(fontSize: 18)))
+                    ],
+                  )
+                ],
+              )),
+          Padding(
               padding: EdgeInsets.only(top: 32, bottom: 16),
               child: Text("App choice:",
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold))),
