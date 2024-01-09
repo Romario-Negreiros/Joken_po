@@ -31,7 +31,7 @@ class Home extends StatefulWidget {
 
 class GameWinningConditions {
   static List<String> playerA = ["paperxrock", "scissorxpaper", "rockxscissor"];
-  static List<String> playerB = ["paperxrock", "scissorxpaper", "rockxscissor"];
+  static List<String> playerB = ["rockxpaper", "paperxscissor", "scissorxrock"];
 }
 
 class _HomeState extends State<Home> {
