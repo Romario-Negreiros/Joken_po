@@ -67,15 +67,15 @@ class _HomeState extends State<Home> {
             if (GameWinningConditions.playerA.contains(combination)) {
               setState(() {
                 appScore = appScore + 1;
-                result = "O app venceu :(";
+                result = "APP VENCEU";
               });
             } else if (GameWinningConditions.playerB.contains(combination)) {
               setState(() {
                 userScore = userScore + 1;
-                result = "Você venceu :)";
+                result = "VOCÊ VENCEU";
               });
             } else {
-              result = "Empate :|";
+              result = "EMPATE";
             }
           });
         });
@@ -92,23 +92,23 @@ class _HomeState extends State<Home> {
         ),
         body: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
           Padding(
-              padding: EdgeInsets.only(top: 32),
+              padding: EdgeInsets.only(top: 32, left: 10, right: 10),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Column(
                     children: [
-                      Text("Score do App", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                      Text("APP", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
                       Padding(
                           padding: EdgeInsets.only(top: 5),
                           child: Text("$appScore", style: TextStyle(fontSize: 18)))
                     ],
                   ),
-                  Text(result, style: TextStyle(fontSize: 18, decoration: TextDecoration.underline, decorationColor: Colors.purple)),
+                  Text(result, style: TextStyle(fontSize: 18)),
                   Column(
                     children: [
-                      Text("Seu Score", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                      Text("VOCÊ", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
                       Padding(
                           padding: EdgeInsets.only(top: 5),
                           child: Text("$userScore", style: TextStyle(fontSize: 18)))
