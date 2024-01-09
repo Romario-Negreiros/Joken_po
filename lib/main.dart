@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import "dart:math";
+import "dart:async";
 
 import "package:flutter/material.dart";
 
@@ -28,15 +29,57 @@ class Home extends StatefulWidget {
   State<Home> createState() => _HomeState();
 }
 
+class GameWinningConditions {
+  static List<String> playerA = ["paperxrock", "scissorxpaper", "rockxscissor"];
+  static List<String> playerB = ["paperxrock", "scissorxpaper", "rockxscissor"];
+}
+
 class _HomeState extends State<Home> {
   List<String> options = ["rock", "paper", "scissor"];
   String userChoice = "";
-  String appChoice = "";
+  String appChoice = "default";
+
+  int userScore = 0;
+  int appScore = 0;
+  String result = "";
 
   void handleOptionChoosed(int optionIndex) {
-    setState(() {
-      userChoice = options[optionIndex];
-      appChoice = options[Random().nextInt(options.length + 1)];
+    Timer(const Duration(milliseconds: 13), () {
+      setState(() {
+        appChoice = options[0];
+      });
+      Timer(const Duration(milliseconds: 13), () {
+        setState(() {
+          appChoice = options[1];
+        });
+        Timer(const Duration(milliseconds: 13), () {
+          setState(() {
+            appChoice = options[2];
+          });
+          Timer(const Duration(milliseconds: 13), () {
+            setState(() {
+              appChoice = options[Random().nextInt(options.length)];
+              userChoice = options[optionIndex];
+            });
+
+            String combination = "${appChoice}x$userChoice";
+
+            if (GameWinningConditions.playerA.contains(combination)) {
+              setState(() {
+                appScore = appScore + 1;
+                result = "O app venceu :(";
+              });
+            } else if (GameWinningConditions.playerB.contains(combination)) {
+              setState(() {
+                userScore = userScore + 1;
+                result = "Você venceu :)";
+              });
+            } else {
+              result = "Empate :|";
+            }
+          });
+        });
+      });
     });
   }
 
@@ -66,35 +109,43 @@ class _HomeState extends State<Home> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               GestureDetector(
-                child: Image.asset(
-                  "assets/images/rock.png",
-                  height: 95,
-                  opacity: userChoice == "" ? null : userChoice != options[0] ? AlwaysStoppedAnimation(.7) : null),
+                child: Image.asset("assets/images/rock.png",
+                    height: 95,
+                    opacity: userChoice == ""
+                        ? null
+                        : userChoice != options[0]
+                            ? AlwaysStoppedAnimation(.7)
+                            : null),
                 onTap: () {
                   handleOptionChoosed(0);
                 },
               ),
               GestureDetector(
-                child: Image.asset(
-                  "assets/images/paper.png",
-                  height: 95,
-                  opacity: userChoice == "" ? null : userChoice != options[1] ? AlwaysStoppedAnimation(.7) : null),
+                child: Image.asset("assets/images/paper.png",
+                    height: 95,
+                    opacity: userChoice == ""
+                        ? null
+                        : userChoice != options[1]
+                            ? AlwaysStoppedAnimation(.7)
+                            : null),
                 onTap: () {
                   handleOptionChoosed(1);
                 },
               ),
               GestureDetector(
-                child: Image.asset(
-                  "assets/images/scissor.png",
-                  height: 95,
-                  opacity: userChoice == "" ? null : userChoice != options[2] ? AlwaysStoppedAnimation(.7) : null),
+                child: Image.asset("assets/images/scissor.png",
+                    height: 95,
+                    opacity: userChoice == ""
+                        ? null
+                        : userChoice != options[2]
+                            ? AlwaysStoppedAnimation(.7)
+                            : null),
                 onTap: () {
                   handleOptionChoosed(2);
                 },
               ),
             ],
           ),
-          
         ]));
   }
 }
